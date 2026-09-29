@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 
 import connectDB from "./config/db.js";
+import { corsOptions } from "./config/cors.js";
 import authRoutes from "./routes/authRoutes.js";
 import blogRoutes from "./routes/blogRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
@@ -12,7 +13,7 @@ import { errorMiddleware } from "./middleware/errorMiddleware.js";
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors(corsOptions));
 app.use(express.json());
 
 

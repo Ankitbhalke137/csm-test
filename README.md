@@ -207,9 +207,11 @@ Example `apps/backend/.env`:
 ```text
 MONGODB_URI=your-connection-string
 JWT_SECRET=your-secret
+CORS_ORIGINS=http://localhost:5173,https://your-frontend.vercel.app
 ```
 
 - **Never commit `.env` files or secrets to GitHub.** `.env` is already in `.gitignore`; do not remove it from there.
+- `CORS_ORIGINS` is a comma-separated allowlist of browser origins the API accepts. It falls back to `http://localhost:5173` when unset, so local dev needs no configuration. Set it on Render to your deployed frontend origin, otherwise the browser blocks every request.
 - Frontend variables in `apps/web/.env` must start with `VITE_` (for example `VITE_API_URL`) or Vite will not read them.
 - Anything in the frontend `.env` is visible in the browser, so **never put secrets in `apps/web/.env`**.
 - If a new variable is needed, tell the team the variable **name** (not the value) so others can add it to their own `.env`.
